@@ -1,0 +1,107 @@
+-- tema claro ; -;
+
+select a.codalu, a.nomalu, h.vlrnot
+from aluno a
+inner join historico h 
+	on a.codalu = h.codalu
+order by a.nomalu;
+
+-- usando join implicito
+select a.codalu, a.nomalu, h.vlrnot
+from aluno a, historico h 
+where a.codalu = h.codalu
+order by a.nomalu;
+
+-- relacionar o codigo do aluno, nome aluno, nome da diciplina
+-- ordenar o relatorio pelo nome do aluno de forma ascendente
+-- aluno x historico x disciplina
+-- n =3 => n-1 joins = 2
+
+select a.codalu, a.nomalu, d.nomdis, h.vlrnot
+from aluno a 
+inner join historico h on a.codalu = h.codalu 
+inner join disciplina d on d.coddis = h.coddis 
+order by a.nomalu;
+
+-- relacionar o nome do usuario, o cep do ususario e os titulos dos livros
+--colocar apelido nas colunas 
+-- ordenar o relatorio pelo nome do usuraio de forma descendente
+-- usuario x emprestimo x livro
+
+select u.nomusu nome, u.cepusu cep, l.titliv titulo
+from usuario u 
+inner  join emprestimo e on u.codusu = e.codusu
+inner join  livro l on l.codliv = e.codliv 
+order by u.nomusu desc;
+--relacionar o nome do aluno, o codigo da disciplina, a nota
+--para todos os alunos, mesmo os que nao tem nota
+
+select a.nomalu, h.coddis, h.vlrnot
+from aluno a 
+left join historico h on a.codalu = h.codalu;
+
+-- funçoes agregação: max, min, sum, count, avg
+
+select max(codusu) from usuario;
+
+select min(codusu) from usuario;
+
+select count(*) from reserva;
+
+select sum(vlrnot) from historico;
+
+select avg(vlront) from historico;
+
+-- relacionar o codigo do aluno e a media das notas
+-- para todos os alunos
+
+select codalu, trunc(avg(vlrnot),2) 
+from historico
+group by codalu;
+
+--relacionar o codigo do aluno e a media das notas
+--para todos os alunos com media superior a 7
+
+select codalu aluno, trunc(avg(vlront), 2) media
+from historico
+group by codalu 
+having avg(vlrnot) >7; 
+
+-- relacionar o nome do usuario e a quantidade de emprestimos por usuario
+-- ordenar do usuario com mais emprestimos para o usuario
+-- com menos emprestimos
+-- usuario x emprestimo
+
+select u.nomusu nome, count(e.*) quantidade
+from usuario u 
+inner join emprestimo e on u.codusu = e.codusu
+group by u.nomusu
+order by 2 desc, 1;
+
+-- relacionar o maior slaraio da tabela cargo
+
+select max(vlrsal)salario from cargo;
+
+-- relacionar o nome dos funcionarios que ganham o maior salario
+
+select f.nomfun nome
+from funcionario f 
+inner join cargo c on f.codcar = c.codcar 
+where c.vlrsal = (select max(vlrsal)from cargo);
+
+-- relacionar o top 2 livros com mais emprestimos
+
+select l.titliv titulo, count(e.*) quantidade
+from livro l 
+inner join emprestimo e on l.codliv = e.codliv 
+group by l.titliv 
+order by 2 desc
+limit 2;
+
+-- relacionar a mairo data de emprsetimo, a menor data de emprestimo
+-- e a quantidade de emprestimo
+
+select max(datemp) maior, min(datemp) menor, count(*)quantidade
+from emprestimo;
+
+

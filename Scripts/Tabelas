@@ -1,0 +1,63 @@
+-- Criação das Tabelas
+
+create table usuario(
+cpfusus varchar(11),
+nomusus varchar(40),
+emausu varchar(40),
+depausu varchar(40),
+carusus varchar(40)
+);
+
+create table empresa(
+cnpemp varchar(14),
+nomeemp varchar(40)not null,
+emaemp varchar(40) not null
+);
+
+create table chamado(
+codcha int,
+databecha timestamp,
+dataencha timestamp,
+stcha char(1)
+);
+
+create table tipo(
+gratip char not null,
+clatip char
+);
+
+create table telefone(
+restel varchar(20),
+pestel  varchar(20) not null
+);
+
+create table comentario(
+codcom int,
+autcom varchar(40) not null,
+descom text
+);
+
+create table endereco(
+cepend varchar(11),
+ruaend varchar(40),
+baiend varchar(20),
+cidend varchar(20)
+);
+
+
+
+-- Usando o Select para verificar se as tabelas foram criadas
+
+select * from empresa;
+select * from usuario;
+select * from chamado;
+select * from telefone;
+select * from comentario;
+select * from tipo;
+select * from endereco;
+
+-- Colocando o cpf como chave Primaria
+
+alter table usuario
+add constraint cpfusus primary key (cpfusus);
+

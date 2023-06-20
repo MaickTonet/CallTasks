@@ -1,63 +1,95 @@
--- Criação das Tabelas
+-- Criação das tabelas
+CREATE TABLE chamado (
+codcha SERIAL NOT NULL, 
+empresacnpemp varchar(14) NOT NULL, 
+usuariocodusu varchar(11) NOT NULL, 
+databecha timestamp, 
+stcha char(1), 
+PRIMARY KEY (codcha));
 
-create table usuario(
-cpfusus varchar(11),
-nomusus varchar(40),
-emausu varchar(40),
-depausu varchar(40),
-carusus varchar(40)
-);
+CREATE TABLE departamento (
+coddep SERIAL NOT NULL, 
+usuariocpfusu varchar(11) NOT NULL, 
+cardep varchar(30), 
+PRIMARY KEY (coddep));
 
-create table empresa(
-cnpemp varchar(14),
-nomeemp varchar(40)not null,
-emaemp varchar(40) not null
-);
+CREATE TABLE empresa (
+cnpemp varchar(14) NOT NULL, 
+nomemp varchar(40), 
+emaemp varchar(40), 
+PRIMARY KEY (cnpemp));
 
-create table chamado(
-codcha int,
-databecha timestamp,
-dataencha timestamp,
-stcha char(1)
-);
-
-create table tipo(
-gratip char not null,
-clatip char
-);
-
-create table telefone(
-restel varchar(20),
-pestel  varchar(20) not null
-);
-
-create table comentario(
-codcom int,
-autcom varchar(40) not null,
-descom text
-);
-
-create table endereco(
+CREATE TABLE endereço_empresa (
+codendemp SERIAL NOT NULL, 
+empresacnpemp varchar(14) NOT NULL, 
 cepend varchar(11),
-ruaend varchar(40),
-baiend varchar(20),
-cidend varchar(20)
-);
+ruaend varchar(40), 
+baiend varchar(20), 
+cidend varchar(20), 
+PRIMARY KEY (codendemp));
 
+CREATE TABLE historico_chamado (
+codhischa SERIAL NOT NULL, 
+chamadocodcha int4 NOT NULL, 
+tipo_chamadocodcha int4 NOT NULL, 
+datrescha date, 
+resregcha varchar(30), 
+descha text NOT NULL, 
+PRIMARY KEY (codhischa));
 
+CREATE TABLE telefone_empresa (
+codtelemp SERIAL NOT NULL, 
+empresacnpemp varchar(14) NOT NULL, 
+contelemp varchar(20), 
+pestelemp varchar(20) NOT NULL, 
+PRIMARY KEY (codtelemp));
 
--- Usando o Select para verificar se as tabelas foram criadas
+CREATE TABLE telefone_usuario (
+coditelusu SERIAL NOT NULL, 
+usuariocpfusu varchar(11) NOT NULL, 
+telpesusu varchar(20), 
+telresusu varchar(20) NOT NULL, 
+PRIMARY KEY (coditelusu));
 
-select * from empresa;
-select * from usuario;
-select * from chamado;
-select * from telefone;
-select * from comentario;
-select * from tipo;
-select * from endereco;
+CREATE TABLE tipo_chamado (
+codcha SERIAL NOT NULL, 
+chamadocodcha int4 NOT NULL,
+gratipcha char(1),
+clatipcha char(1) NOT NULL,
+PRIMARY KEY (codcha));
 
--- Colocando o cpf como chave Primaria
+CREATE TABLE usuario (
+cpfusu varchar(11) NOT NULL, 
+usuariocpfusu varchar(11) NOT NULL, 
+nomusu varchar(40), 
+emausu varchar(40), 
+PRIMARY KEY (cpfusu));
 
-alter table usuario
-add constraint cpfusus primary key (cpfusus);
+-- Chamando as chaves estrangeiras
 
+ALTER TABLE endereço_empresa 
+ADD CONSTRAINT FKendereço_e979932 FOREIGN KEY (empresacnpemp) REFERENCES empresa (cnpemp);
+
+ALTER TABLE chamado 
+ADD CONSTRAINT FKchamado982503 FOREIGN KEY (usuariocodusu) REFERENCES usuario (cpfusu);
+
+ALTER TABLE chamado 
+ADD CONSTRAINT FKchamado987964 FOREIGN KEY (empresacnpemp) REFERENCES empresa (cnpemp);
+
+ALTER TABLE tipo_chamado 
+ADD CONSTRAINT FKtipo_chama20230 FOREIGN KEY (chamadocodcha) REFERENCES chamado (codcha);
+
+ALTER TABLE telefone_empresa 
+ADD CONSTRAINT FKtelefone_e298422 FOREIGN KEY (empresacnpemp) REFERENCES empresa (cnpemp);
+
+ALTER TABLE departamento 
+ADD CONSTRAINT FKdepartamen198253 FOREIGN KEY (usuariocpfusu) REFERENCES usuario (cpfusu);
+
+ALTER TABLE telefone_usuario 
+ADD CONSTRAINT FKtelefone_u259680 FOREIGN KEY (usuariocpfusu) REFERENCES usuario (cpfusu);
+
+ALTER TABLE historico_chamado 
+ADD CONSTRAINT FKhistorico_881969 FOREIGN KEY (chamadocodcha) REFERENCES chamado (codcha);
+
+ALTER TABLE historico_chamado 
+ADD CONSTRAINT FKhistorico_7681 FOREIGN KEY (tipo_chamadocodcha) REFERENCES tipo_chamado (codcha);

@@ -1,8 +1,8 @@
 -- tabela chamado
 COMMENT ON TABLE chamado IS 'Cadastro do chamado';
 COMMENT ON COLUMN chamado.codcha IS 'Codigo do chamado';
-COMMENT ON COLUMN chamado.empresacnpemp IS 'Chave estrangeira da empresa';
-COMMENT ON COLUMN chamado.usuariocodusu IS 'Chave estrangeira do usuário';
+COMMENT ON COLUMN chamado.cnpemp IS 'Chave estrangeira da empresa';
+COMMENT ON COLUMN chamado.codusu IS 'Chave estrangeira do usuário';
 COMMENT ON COLUMN chamado.databecha IS 'Data de abetura do chamado';
 COMMENT ON COLUMN chamado.stcha IS 'Status do chamado';
 -- departamento
@@ -17,13 +17,13 @@ COMMENT ON COLUMN empresa.emaemp IS 'E-mail da empresa';
 -- endereco emp
 COMMENT ON TABLE endereço_empresa IS 'Endereço da empresa';
 COMMENT ON COLUMN endereço_empresa.codendemp IS 'Código do endereço da empresa';
-COMMENT ON COLUMN endereço_empresa.empresacnpemp IS 'Chave estrangeira da empresa';
+COMMENT ON COLUMN endereço_empresa.cnpemp IS 'Chave estrangeira da empresa';
 COMMENT ON COLUMN endereço_empresa.cepend IS 'CEP da empresa';
 COMMENT ON COLUMN endereço_empresa.ruaend IS 'Rua da empresa';
 COMMENT ON COLUMN endereço_empresa.baiend IS 'Bairo da empresa';
 COMMENT ON COLUMN endereço_empresa.cidend IS 'Cidade da empresa';
 -- historico chama
-OMMENT ON TABLE historico_chamado IS 'Histórico dos chamados';
+COMMENT ON TABLE historico_chamado IS 'Histórico dos chamados';
 COMMENT ON COLUMN historico_chamado.codhischa IS 'Código do histórico de chamados';
 COMMENT ON COLUMN historico_chamado.datrescha IS 'Data de registro do chamado';
 COMMENT ON COLUMN historico_chamado.resregcha IS 'Responsável pelo registro do chamado';

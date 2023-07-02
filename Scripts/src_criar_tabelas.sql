@@ -21,7 +21,7 @@ CREATE TABLE empresa (
   PRIMARY KEY (cnpemp)
 );
 
-CREATE TABLE endereço_empresa (
+CREATE TABLE endereco_empresa (
   codendemp SERIAL NOT NULL,
   empresacnpemp varchar(14) NOT NULL,
   cepend varchar(11),
@@ -30,7 +30,6 @@ CREATE TABLE endereço_empresa (
   cidend varchar(20),
   PRIMARY KEY (codendemp)
 );
-
 
 CREATE TABLE historico_chamado (
   codhischa SERIAL NOT NULL,
@@ -70,15 +69,33 @@ CREATE TABLE usuario (
   cpfusu varchar(11) NOT NULL,
   nomusu varchar(40) NOT NULL,
   emausu varchar(40),
+  idausu date NOT NULL,
   PRIMARY KEY (cpfusu)
 );
 
-ALTER TABLE endereço_empresa ADD CONSTRAINT endereco_empresa_fk FOREIGN KEY (empresacnpemp) REFERENCES empresa (cnpemp);
-ALTER TABLE chamado ADD CONSTRAINT chamado_fk FOREIGN KEY (codusu) REFERENCES usuario (cpfusu);
-ALTER TABLE chamado ADD CONSTRAINT chamado_fk FOREIGN KEY (cnpemp) REFERENCES empresa (cnpemp);
-ALTER TABLE tipo_chamado ADD CONSTRAINT tipo_chamado_fk FOREIGN KEY (codcha) REFERENCES chamado (codcha);
-ALTER TABLE telefone_empresa ADD CONSTRAINT telefone_empresa_fk FOREIGN KEY (cnpemp) REFERENCES empresa (cnpemp);
-ALTER TABLE departamento ADD CONSTRAINT departamento_fk FOREIGN KEY (cpfusu) REFERENCES usuario (cpfusu);
-ALTER TABLE telefone_usuario ADD CONSTRAINT telefone_usuario_fk FOREIGN KEY (cpfusu) REFERENCES usuario (cpfusu);
-ALTER TABLE historico_chamado ADD CONSTRAINT historico_chamado_fk FOREIGN KEY (codcha) REFERENCES chamado (codcha);
-ALTER TABLE historico_chamado ADD CONSTRAINT historico_chamado_fk FOREIGN KEY (tipcodcha) REFERENCES tipo_chamado (tipcodcha);
+ALTER TABLE endereco_empresa
+  ADD CONSTRAINT FKendereco_e979932 FOREIGN KEY (empresacnpemp) REFERENCES empresa (cnpemp);
+
+ALTER TABLE chamado
+  ADD CONSTRAINT FKchamado106257 FOREIGN KEY (codusu) REFERENCES usuario (cpfusu);
+
+ALTER TABLE chamado
+  ADD CONSTRAINT FKchamado662276 FOREIGN KEY (cnpemp) REFERENCES empresa (cnpemp);
+
+ALTER TABLE tipo_chamado
+  ADD CONSTRAINT FKtipo_chama409245 FOREIGN KEY (codcha) REFERENCES chamado (codcha);
+
+ALTER TABLE telefone_empresa
+  ADD CONSTRAINT FKtelefone_e351819 FOREIGN KEY (cnpemp) REFERENCES empresa (cnpemp);
+
+ALTER TABLE departamento
+  ADD CONSTRAINT FKdepartamen684576 FOREIGN KEY (cpfusu) REFERENCES usuario (cpfusu);
+
+ALTER TABLE telefone_usuario
+  ADD CONSTRAINT FKtelefone_u376850 FOREIGN KEY (cpfusu) REFERENCES usuario (cpfusu);
+
+ALTER TABLE historico_chamado
+  ADD CONSTRAINT FKhistorico_547505 FOREIGN KEY (codcha) REFERENCES chamado (codcha);
+
+ALTER TABLE historico_chamado
+  ADD CONSTRAINT FKhistorico_85058 FOREIGN KEY (tipcodcha) REFERENCES tipo_chamado (tipcodcha);

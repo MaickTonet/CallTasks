@@ -7,3 +7,4 @@
 -- Mudar as Cores
 -- Coocar um titulo Principal
 -- Colocar as Informaçoes na pagina
+-- Ajustar as Animaçoes no JS(JavaScript)

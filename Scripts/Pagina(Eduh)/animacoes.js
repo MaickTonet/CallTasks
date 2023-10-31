@@ -31,10 +31,7 @@ const fadeIn = anime({
     to: 1,
   },
 });
-
-// Importa o método `addEventListener()` //Erro
-const addEventListener = window.addEventListener.
-// Importa o método `addEventListener()` //Erro
+// Importa o método `addEventListener()`
 const addEventListener = window.addEventListener.bind(window);
 
 // Adiciona um evento de clique aos botões de navegação

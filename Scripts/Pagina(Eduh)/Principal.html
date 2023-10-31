@@ -2,28 +2,71 @@
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8">
-  <title>Barra Lateral</title>
+  <title>Suporte de chamados</title>
+  <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-  <link rel="stylesheet" href="estilo.css">
 </head>
 <body>
-  <div class="sidebar">
-    <h2>Barra Lateral</h2>
-    <form action="/search" method="post">
-      <input type="text" name="query" placeholder="Pesquisar">
-      <button class="sidebar-button" type="submit">
-        <i class="fas fa-search"></i>
-        Pesquisar
-      </button>
-    </form>
-    <button class="sidebar-button" type="button">
-      <i class="fas fa-filter"></i>
-      Filtro
-    </button>
-    <button class="sidebar-button" type="button">
-      <i class="fas fa-question-circle"></i>
-      Ajuda
-    </button>
-  </div>
+  <header>
+    <h1>Suporte de chamados</h1>
+    <nav>
+      <a href="#abrir-chamado">Abrir chamado</a>
+      <a href="#consultar-chamados">Consultar chamados</a>
+      <a href="#ajuda">Ajuda</a>
+    </nav>
+  </header>
+  <main>
+    <section id="abrir-chamado">
+      <h2>Abrir chamado</h2>
+      <form action="#">
+        <div class="campo">
+          <label for="titulo">Título</label>
+          <input type="text" id="titulo" required>
+        </div>
+        <div class="campo">
+          <label for="descricao">Descrição</label>
+          <textarea id="descricao" required></textarea>
+        </div>
+        <button type="submit">Abrir chamado</button>
+      </form>
+    </section>
+    <section id="consultar-chamados">
+      <h2>Consultar chamados</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Número</th>
+            <th>Título</th>
+            <th>Status</th>
+            <th>Data de abertura</th>
+            <th>Data de fechamento</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>12345</td>
+            <td>Título do chamado</td>
+            <td>Aberto</td>
+            <td>2023-10-31</td>
+            <td>-</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+    <section id="ajuda">
+      <h2>Ajuda</h2>
+      <p>
+        Aqui você encontra informações sobre como abrir e consultar chamados.
+      </p>
+      <ul>
+        <li>Para abrir um chamado, preencha o formulário na seção "Abrir chamado".</li>
+        <li>Para consultar chamados, selecione o status desejado na tabela.</li>
+      </ul>
+    </section>
+  </main>
+  <footer>
+    <p>Copyright &copy; 2023</p>
+  </footer>
+  <script src="script.js"></script>
 </body>
 </html>

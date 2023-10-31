@@ -32,8 +32,26 @@ const fadeIn = anime({
   },
 });
 
-// Importa o método `addEventListener()`
+// Importa o método `addEventListener()` //Erro
 const addEventListener = window.addEventListener.
+// Importa o método `addEventListener()` //Erro
+const addEventListener = window.addEventListener.bind(window);
+
+// Adiciona um evento de clique aos botões de navegação
+addEventListener("click", event => {
+  // Obtém o elemento que foi clicado
+  const element = event.target;
+
+  // Se o elemento for um link
+  if (element.tagName === "A") {
+    // Obtém o id da seção que o link representa
+    const sectionId = element.getAttribute("href");
+
+    // Redireciona para a página com o id da seção
+    window.location.href = sectionId;
+  }
+});
+
 
 
 // Inicia as animações

@@ -32,6 +32,10 @@ const fadeIn = anime({
   },
 });
 
+// Importa o método `addEventListener()`
+const addEventListener = window.addEventListener.
+
+
 // Inicia as animações
 increaseSize.start();
 rotate.start();

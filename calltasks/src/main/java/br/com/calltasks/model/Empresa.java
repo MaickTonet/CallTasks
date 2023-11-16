@@ -16,13 +16,13 @@ public class Empresa implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name = "cnpj_empresa", length = 14)
+	@Column(name = "cnpj_empresa", length = 14, nullable = false)
 	private String cnpjEmpresa;
 
-	@Column(name = "nome_empresa", length = 40)
+	@Column(name = "nome_empresa", length = 40, nullable = false)
 	private String nomeEmpresa;
 
-	@Column(name = "email_empresa", length = 40)
+	@Column(name = "email_empresa", length = 40, nullable = false)
 	private String emailEmpresa;
 
 	public String getCnpjEmpresa() {

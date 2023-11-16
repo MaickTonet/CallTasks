@@ -19,14 +19,14 @@ public class Chamado implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name = "codigo_chamado")
+	@Column(name = "codigo_chamado", nullable = false)
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_chamado")
 	private int codigoChamado;
 
-	@Column(name = "dataAbertura_chamado")
+	@Column(name = "dataAbertura_chamado", nullable = false)
 	private java.sql.Timestamp dataAberturaChamado;
 
-	@Column(name = "status_chamado")
+	@Column(name = "status_chamado", nullable = false)
 	private char statusChamado;
 
 	@ManyToOne

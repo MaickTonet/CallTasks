@@ -26,7 +26,7 @@ public class TelefoneUsuario implements Serializable {
 	@Column(name = "tel_pessoal_usuario", length = 20)
 	private String telefonePessoalUsuario;
 
-	@Column(name = "tel_residencial_usuario", length = 20)
+	@Column(name = "tel_residencial_usuario", length = 20, nullable = false)
 	private String telefoneResidencialUsuario;
 
 	@OneToOne

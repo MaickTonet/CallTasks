@@ -24,16 +24,16 @@ public class EnderecoEmpresa implements Serializable {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_endereco_empresa")
 	private int codigoEnderecoEmpresa;
 
-	@Column(name = "cep_endereco", length = 11)
+	@Column(name = "cep_endereco", length = 11, nullable = false)
 	private String cepEndereco;
 
-	@Column(name = "rua_endereco", length = 40)
+	@Column(name = "rua_endereco", length = 40, nullable = false)
 	private String RuaEndereco;
 
-	@Column(name = "bairro_endereco", length = 20)
+	@Column(name = "bairro_endereco", length = 20, nullable = false)
 	private String bairroEndereco;
 
-	@Column(name = "cidade_endereco", length = 20)
+	@Column(name = "cidade_endereco", length = 20, nullable = false)
 	private String cidadeEndereco;
 
 	@OneToOne

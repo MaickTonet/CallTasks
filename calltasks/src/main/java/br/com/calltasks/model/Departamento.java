@@ -18,10 +18,10 @@ public class Departamento implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name = "codigo_departamento")
+	@Column(name = "codigo_departamento", nullable = false)
 	private int codigoDepartamento;
 
-	@Column(name = "cargo_departamento", length = 30)
+	@Column(name = "cargo_departamento", length = 30, nullable = false)
 	private String cargoDepartamento;
 
 	@OneToOne

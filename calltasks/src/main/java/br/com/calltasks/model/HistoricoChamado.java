@@ -42,6 +42,21 @@ public class HistoricoChamado implements Serializable {
 	@JoinColumn(name = "cod_tipo_chamado")
 	private TipoChamado codigoTipoChamado;
 
+	public HistoricoChamado() {
+		super();
+	}
+
+	public HistoricoChamado(int codigoEnderecoEmpresa, Date dataRegistroChamado, String responsavelChamado,
+			String descricaoChamado, Chamado codigoChamado, TipoChamado codigoTipoChamado) {
+		super();
+		this.codigoEnderecoEmpresa = codigoEnderecoEmpresa;
+		this.dataRegistroChamado = dataRegistroChamado;
+		this.responsavelChamado = responsavelChamado;
+		this.descricaoChamado = descricaoChamado;
+		this.codigoChamado = codigoChamado;
+		this.codigoTipoChamado = codigoTipoChamado;
+	}
+
 	public int getCodigoEnderecoEmpresa() {
 		return codigoEnderecoEmpresa;
 	}

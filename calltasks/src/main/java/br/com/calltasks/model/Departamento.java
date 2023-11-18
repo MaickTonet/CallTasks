@@ -28,6 +28,17 @@ public class Departamento implements Serializable {
 	@JoinColumn(name = "cpf_usuario")
 	private Usuario cpfUsuario;
 
+	public Departamento() {
+		super();
+	}
+
+	public Departamento(int codigoDepartamento, String cargoDepartamento, Usuario cpfUsuario) {
+		super();
+		this.codigoDepartamento = codigoDepartamento;
+		this.cargoDepartamento = cargoDepartamento;
+		this.cpfUsuario = cpfUsuario;
+	}
+
 	public int getCodigoDepartamento() {
 		return codigoDepartamento;
 	}

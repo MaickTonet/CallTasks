@@ -40,6 +40,21 @@ public class EnderecoEmpresa implements Serializable {
 	@JoinColumn(name = "cpnj_empresa")
 	private Empresa cnpjEmpresa;
 
+	public EnderecoEmpresa() {
+		super();
+	}
+
+	public EnderecoEmpresa(int codigoEnderecoEmpresa, String cepEndereco, String ruaEndereco, String bairroEndereco,
+			String cidadeEndereco, Empresa cnpjEmpresa) {
+		super();
+		this.codigoEnderecoEmpresa = codigoEnderecoEmpresa;
+		this.cepEndereco = cepEndereco;
+		RuaEndereco = ruaEndereco;
+		this.bairroEndereco = bairroEndereco;
+		this.cidadeEndereco = cidadeEndereco;
+		this.cnpjEmpresa = cnpjEmpresa;
+	}
+
 	public int getCodigoEnderecoEmpresa() {
 		return codigoEnderecoEmpresa;
 	}

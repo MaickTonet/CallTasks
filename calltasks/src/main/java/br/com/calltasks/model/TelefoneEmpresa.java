@@ -33,6 +33,19 @@ public class TelefoneEmpresa implements Serializable {
 	@JoinColumn(name = "cnpj_empresa")
 	private Empresa cnpjEmpresa;
 
+	public TelefoneEmpresa() {
+		super();
+	}
+
+	public TelefoneEmpresa(int codigoTelefoneEmpresa, String telefonePessoalEmpresa, String telefoneResidencialEmpresa,
+			Empresa cnpjEmpresa) {
+		super();
+		this.codigoTelefoneEmpresa = codigoTelefoneEmpresa;
+		this.telefonePessoalEmpresa = telefonePessoalEmpresa;
+		this.telefoneResidencialEmpresa = telefoneResidencialEmpresa;
+		this.cnpjEmpresa = cnpjEmpresa;
+	}
+
 	public int getCodigoTelefoneEmpresa() {
 		return codigoTelefoneEmpresa;
 	}

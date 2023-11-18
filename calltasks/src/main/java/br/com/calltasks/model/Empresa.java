@@ -25,6 +25,17 @@ public class Empresa implements Serializable {
 	@Column(name = "email_empresa", length = 40, nullable = false)
 	private String emailEmpresa;
 
+	public Empresa() {
+		super();
+	}
+
+	public Empresa(String cnpjEmpresa, String nomeEmpresa, String emailEmpresa) {
+		super();
+		this.cnpjEmpresa = cnpjEmpresa;
+		this.nomeEmpresa = nomeEmpresa;
+		this.emailEmpresa = emailEmpresa;
+	}
+
 	public String getCnpjEmpresa() {
 		return cnpjEmpresa;
 	}

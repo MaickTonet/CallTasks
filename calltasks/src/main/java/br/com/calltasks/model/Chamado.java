@@ -1,6 +1,7 @@
 package br.com.calltasks.model;
 
 import java.io.Serializable;
+import java.sql.Timestamp;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -36,6 +37,20 @@ public class Chamado implements Serializable {
 	@ManyToOne
 	@JoinColumn(name = "cnpj_empresa")
 	private Empresa cnpjEmpresa;
+
+	public Chamado() {
+		super();
+	}
+
+	public Chamado(int codigoChamado, Timestamp dataAberturaChamado, char statusChamado, Usuario cpfUsuario,
+			Empresa cnpjEmpresa) {
+		super();
+		this.codigoChamado = codigoChamado;
+		this.dataAberturaChamado = dataAberturaChamado;
+		this.statusChamado = statusChamado;
+		this.cpfUsuario = cpfUsuario;
+		this.cnpjEmpresa = cnpjEmpresa;
+	}
 
 	public int getCodigoChamado() {
 		return codigoChamado;

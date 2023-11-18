@@ -33,6 +33,18 @@ public class TipoChamado implements Serializable {
 	@JoinColumn(name = "codigo_chamado")
 	private Chamado codigoChamado;
 
+	public TipoChamado() {
+		super();
+	}
+
+	public TipoChamado(int codigoTipoChamado, char grauChamado, char classeChamado, Chamado codigoChamado) {
+		super();
+		this.codigoTipoChamado = codigoTipoChamado;
+		this.grauChamado = grauChamado;
+		this.classeChamado = classeChamado;
+		this.codigoChamado = codigoChamado;
+	}
+
 	public int getCodigoTipoChamado() {
 		return codigoTipoChamado;
 	}

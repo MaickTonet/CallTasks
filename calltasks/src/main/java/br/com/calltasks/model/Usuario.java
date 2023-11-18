@@ -28,6 +28,23 @@ public class Usuario implements Serializable {
 	@Column(name = "dataNascimento_usuario", nullable = false)
 	private Date dataNascimento;
 
+	public Usuario(String nome) {
+		super();
+		this.nome = nome;
+	}
+
+	public Usuario() {
+		super();
+	}
+
+	public Usuario(String cpfUsuario, String nome, String email, Date dataNascimento) {
+		super();
+		this.cpfUsuario = cpfUsuario;
+		this.nome = nome;
+		this.email = email;
+		this.dataNascimento = dataNascimento;
+	}
+
 	public String getCpfUsuario() {
 		return cpfUsuario;
 	}

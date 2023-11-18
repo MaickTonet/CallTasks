@@ -33,6 +33,19 @@ public class TelefoneUsuario implements Serializable {
 	@JoinColumn(name = "cpf_usuario")
 	private Usuario cpfUsuario;
 
+	public TelefoneUsuario() {
+		super();
+	}
+
+	public TelefoneUsuario(int codigoTelefoneUsuario, String telefonePessoalUsuario, String telefoneResidencialUsuario,
+			Usuario cpfUsuario) {
+		super();
+		this.codigoTelefoneUsuario = codigoTelefoneUsuario;
+		this.telefonePessoalUsuario = telefonePessoalUsuario;
+		this.telefoneResidencialUsuario = telefoneResidencialUsuario;
+		this.cpfUsuario = cpfUsuario;
+	}
+
 	public int getCodigoTelefoneUsuario() {
 		return codigoTelefoneUsuario;
 	}

@@ -16,7 +16,7 @@ public class Usuario implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name = "cpf_usuario", length = 11, nullable = false)
+	@Column(name = "cpf_usuario", length = 14, nullable = false)
 	private String cpfUsuario;
 
 	@Column(name = "nome_usuario", length = 40, nullable = false)

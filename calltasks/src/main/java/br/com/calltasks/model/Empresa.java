@@ -1,19 +1,13 @@
 package br.com.calltasks.model;
 
-import java.io.Serializable;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
-import jakarta.persistence.SequenceGenerator;
-import jakarta.persistence.Table;
+import lombok.Data;
 
 @Entity
-@Table(name = "empresa")
-@SequenceGenerator(name = "seq_empresa", sequenceName = "seq_empresa", allocationSize = 1, initialValue = 1)
-public class Empresa implements Serializable {
-
-	private static final long serialVersionUID = 1L;
+@Data
+public class Empresa {
 
 	@Id
 	@Column(name = "cnpj_empresa", length = 14, nullable = false)
@@ -24,40 +18,5 @@ public class Empresa implements Serializable {
 
 	@Column(name = "email_empresa", length = 40, nullable = false)
 	private String emailEmpresa;
-
-	public Empresa() {
-		super();
-	}
-
-	public Empresa(String cnpjEmpresa, String nomeEmpresa, String emailEmpresa) {
-		super();
-		this.cnpjEmpresa = cnpjEmpresa;
-		this.nomeEmpresa = nomeEmpresa;
-		this.emailEmpresa = emailEmpresa;
-	}
-
-	public String getCnpjEmpresa() {
-		return cnpjEmpresa;
-	}
-
-	public void setCnpjEmpresa(String cnpjEmpresa) {
-		this.cnpjEmpresa = cnpjEmpresa;
-	}
-
-	public String getNomeEmpresa() {
-		return nomeEmpresa;
-	}
-
-	public void setNomeEmpresa(String nomeEmpresa) {
-		this.nomeEmpresa = nomeEmpresa;
-	}
-
-	public String getEmailEmpresa() {
-		return emailEmpresa;
-	}
-
-	public void setEmailEmpresa(String emailEmpresa) {
-		this.emailEmpresa = emailEmpresa;
-	}
 
 }

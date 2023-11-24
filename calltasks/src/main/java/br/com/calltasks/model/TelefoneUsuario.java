@@ -1,7 +1,5 @@
 package br.com.calltasks.model;
 
-import java.io.Serializable;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -9,18 +7,17 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
-import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
+import lombok.Data;
 
 @Entity
 @Table(name = "telefone_usuario")
-@SequenceGenerator(name = "seq_telefone_usuario", sequenceName = "seq_telefone_usuario", allocationSize = 1, initialValue = 1)
-public class TelefoneUsuario implements Serializable {
-	private static final long serialVersionUID = 1L;
+@Data
+public class TelefoneUsuario {
 
 	@Id
 	@Column(name = "codigo_tel_usuario")
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_telefone_usuario")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int codigoTelefoneUsuario;
 
 	@Column(name = "tel_pessoal_usuario", length = 20)
@@ -32,50 +29,5 @@ public class TelefoneUsuario implements Serializable {
 	@OneToOne
 	@JoinColumn(name = "cpf_usuario")
 	private Usuario cpfUsuario;
-
-	public TelefoneUsuario() {
-		super();
-	}
-
-	public TelefoneUsuario(int codigoTelefoneUsuario, String telefonePessoalUsuario, String telefoneResidencialUsuario,
-			Usuario cpfUsuario) {
-		super();
-		this.codigoTelefoneUsuario = codigoTelefoneUsuario;
-		this.telefonePessoalUsuario = telefonePessoalUsuario;
-		this.telefoneResidencialUsuario = telefoneResidencialUsuario;
-		this.cpfUsuario = cpfUsuario;
-	}
-
-	public int getCodigoTelefoneUsuario() {
-		return codigoTelefoneUsuario;
-	}
-
-	public void setCodigoTelefoneUsuario(int codigoTelefoneUsuario) {
-		this.codigoTelefoneUsuario = codigoTelefoneUsuario;
-	}
-
-	public String getTelefonePessoalUsuario() {
-		return telefonePessoalUsuario;
-	}
-
-	public void setTelefonePessoalUsuario(String telefonePessoalUsuario) {
-		this.telefonePessoalUsuario = telefonePessoalUsuario;
-	}
-
-	public String getTelefoneResidencialUsuario() {
-		return telefoneResidencialUsuario;
-	}
-
-	public void setTelefoneResidencialUsuario(String telefoneResidencialUsuario) {
-		this.telefoneResidencialUsuario = telefoneResidencialUsuario;
-	}
-
-	public Usuario getCpfUsuario() {
-		return cpfUsuario;
-	}
-
-	public void setCpfUsuario(Usuario cpfUsuario) {
-		this.cpfUsuario = cpfUsuario;
-	}
 
 }

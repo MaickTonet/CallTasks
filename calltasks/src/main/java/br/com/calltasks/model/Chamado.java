@@ -16,7 +16,7 @@ public class Chamado {
 	@Id
 	@Column(name = "codigo_chamado", nullable = false)
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int codigoChamado;
+	private long codigoChamado;
 
 	@Column(name = "dataAbertura_chamado", nullable = false)
 	private java.sql.Timestamp dataAberturaChamado;

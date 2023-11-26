@@ -1,5 +1,7 @@
 package br.com.calltasks.model;
 
+import java.time.LocalDate;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -19,14 +21,14 @@ public class Chamado {
 	private long codigoChamado;
 
 	@Column(name = "dataAbertura_chamado", nullable = false)
-	private java.sql.Timestamp dataAberturaChamado;
+	private LocalDate dataAberturaChamado;
 
 	@Column(name = "status_chamado", nullable = false)
 	private char statusChamado;
 
 	@ManyToOne
-	@JoinColumn(name = "cpf_usuario")
-	private Usuario cpfUsuario;
+	@JoinColumn(name = "codigo_usuario")
+	private Usuario codigoUsuario;
 
 	@ManyToOne
 	@JoinColumn(name = "cnpj_empresa")

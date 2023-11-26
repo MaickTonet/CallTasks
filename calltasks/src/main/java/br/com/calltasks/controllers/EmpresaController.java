@@ -15,50 +15,50 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.calltasks.model.Usuario;
-import br.com.calltasks.repository.UsuarioRepository;
+import br.com.calltasks.model.Empresa;
+import br.com.calltasks.repository.EmpresaRepository;
 
 @RestController
-@RequestMapping("/calltasks/usuario")
-public class UsuarioControllers {
+@RequestMapping("/calltasks/empresa")
+public class EmpresaController {
 
 	@Autowired
-	private UsuarioRepository usuarioRepository;
+	private EmpresaRepository empresaRepository;
 
 	@GetMapping(path = "/listar")
-	public List<Usuario> listar() {
-		return usuarioRepository.findAll();
+	public List<Empresa> listar() {
+		return empresaRepository.findAll();
 	}
 
 	@PostMapping(path = "/criar")
 	@ResponseBody
-	public ResponseEntity<Usuario> criar(@RequestBody Usuario usuario) {
-		Usuario user = usuarioRepository.save(usuario);
-		return new ResponseEntity<Usuario>(user, HttpStatus.CREATED);
+	public ResponseEntity<Empresa> criar(@RequestBody Empresa empresa) {
+		Empresa e = empresaRepository.save(empresa);
+		return new ResponseEntity<Empresa>(e, HttpStatus.CREATED);
 	}
 
 	@DeleteMapping(path = "/delete")
 	@ResponseBody
-	public ResponseEntity<String> deletar(@RequestParam Long idUsuario) {
-		usuarioRepository.deleteById(idUsuario);
-		return new ResponseEntity<String>("Usuario excluido com sucesso", HttpStatus.OK);
+	public ResponseEntity<String> deletar(@RequestParam String cnpjEmpresa) {
+		empresaRepository.deleteById(cnpjEmpresa);
+		return new ResponseEntity<String>("Empresa removida com sucesso", HttpStatus.OK);
 	}
 
 	@GetMapping(path = "/buscar-id")
 	@ResponseBody
-	public ResponseEntity<Usuario> buscarID(@RequestParam Long idUsuario) {
-		Usuario usuario = usuarioRepository.findById(idUsuario).get();
-		return new ResponseEntity<Usuario>(usuario, HttpStatus.OK);
+	public ResponseEntity<Empresa> buscarId(@RequestParam String cnpjEmpresa) {
+		Empresa empresa = empresaRepository.findById(cnpjEmpresa).get();
+		return new ResponseEntity<Empresa>(empresa, HttpStatus.OK);
 	}
 
 	@PutMapping(path = "/atualizar")
 	@ResponseBody
-	public ResponseEntity<?> atualizar(@RequestBody Usuario usuario) {
-		if (usuario.getCpfUsuario() == null) {
+	public ResponseEntity<?> atualizar(@RequestBody Empresa empresa) {
+		if (empresa.getCnpjEmpresa() == null) {
 			return new ResponseEntity<String>("Id não informado para atualizar", HttpStatus.OK);
 		}
-		Usuario user = usuarioRepository.saveAndFlush(usuario);
-		return new ResponseEntity<Usuario>(user, HttpStatus.OK);
+		Empresa e = empresaRepository.saveAndFlush(empresa);
+		return new ResponseEntity<Empresa>(e, HttpStatus.OK);
 	}
 
 }

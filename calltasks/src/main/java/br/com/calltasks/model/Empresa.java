@@ -10,7 +10,7 @@ import lombok.Data;
 public class Empresa {
 
 	@Id
-	@Column(name = "cnpj_empresa", length = 14, nullable = false)
+	@Column(name = "cnpj_empresa", length = 18, nullable = false)
 	private String cnpjEmpresa;
 
 	@Column(name = "nome_empresa", length = 40, nullable = false)
@@ -20,3 +20,4 @@ public class Empresa {
 	private String emailEmpresa;
 
 }
+ 

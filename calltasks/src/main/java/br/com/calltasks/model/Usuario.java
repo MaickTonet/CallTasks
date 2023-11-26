@@ -1,6 +1,7 @@
 package br.com.calltasks.model;
 
-import java.sql.Date;
+import java.time.LocalDate;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -25,8 +26,7 @@ public class Usuario {
 
 	@Column(name = "email_usuario", length = 40, nullable = false)
 	private String email;
-
-	@Column(name = "dataNascimento_usuario", nullable = false)
-	private Date dataNascimento;
-
+	
+	@Column(name = "dataAbertura_chamado", nullable = false)
+	private LocalDate dataAberturaChamado;
 }

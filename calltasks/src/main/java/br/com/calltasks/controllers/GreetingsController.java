@@ -53,7 +53,6 @@ public class GreetingsController {
 		usuario.setCpfUsuario("967.835.780-39");
 		usuario.setNome("Lucas");
 		usuario.setEmail("lesbia5182@uorak.com");
-		usuario.setDataNascimento(new Date(0));
 		usuarioRepository.save(usuario);
 		return "Gravado";
 

@@ -19,7 +19,7 @@ public class HistoricoChamado {
 	@Id
 	@Column(name = "cod_historico_chamado")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int codigoEnderecoEmpresa;
+	private long codigoEnderecoEmpresa;
 
 	@Column(name = "data_reg_chamado", nullable = false)
 	private Date dataRegistroChamado;

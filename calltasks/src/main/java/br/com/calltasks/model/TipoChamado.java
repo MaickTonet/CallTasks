@@ -18,7 +18,7 @@ public class TipoChamado {
 	@Id
 	@Column(name = "cod_tipo_chamado")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int codigoTipoChamado;
+	private long codigoTipoChamado;
 
 	@Column(name = "grau_chamado", nullable = false)
 	private char grauChamado;

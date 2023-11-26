@@ -18,7 +18,7 @@ public class EnderecoEmpresa {
 	@Id
 	@Column(name = "cod_endereco_empresa")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int codigoEnderecoEmpresa;
+	private long codigoEnderecoEmpresa;
 
 	@Column(name = "cep_endereco", length = 11, nullable = false)
 	private String cepEndereco;

@@ -18,7 +18,7 @@ public class TelefoneEmpresa {
 	@Id
 	@Column(name = "codigo_tel_empresa")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int codigoTelefoneEmpresa;
+	private long codigoTelefoneEmpresa;
 
 	@Column(name = "tel_pessoal_empresa", length = 20)
 	private String telefonePessoalEmpresa;

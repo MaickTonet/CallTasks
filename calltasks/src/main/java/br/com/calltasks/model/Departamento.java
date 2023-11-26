@@ -13,7 +13,7 @@ public class Departamento {
 
 	@Id
 	@Column(name = "codigo_departamento", nullable = false)
-	private int codigoDepartamento;
+	private long codigoDepartamento;
 
 	@Column(name = "cargo_departamento", length = 30, nullable = false)
 	private String cargoDepartamento;

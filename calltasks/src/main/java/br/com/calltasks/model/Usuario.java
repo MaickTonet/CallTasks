@@ -3,6 +3,8 @@ package br.com.calltasks.model;
 import java.sql.Date;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.Data;
 
@@ -11,7 +13,11 @@ import lombok.Data;
 public class Usuario {
 
 	@Id
-	@Column(name = "cpf_usuario", length = 14, nullable = false)
+	@Column(name = "codigo_usuario")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private long codigoUsuario;
+
+	@Column(name = "cpf_usuario", nullable = false)
 	private String cpfUsuario;
 
 	@Column(name = "nome_usuario", length = 40, nullable = false)

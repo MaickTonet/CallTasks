@@ -1,19 +1,19 @@
--- Drop Constraints
-ALTER TABLE endereco_empresa DROP CONSTRAINT FKendereco_e597786;
-ALTER TABLE chamado DROP CONSTRAINT FKchamado898041;
+-- Drop constraints
+ALTER TABLE endereço_empresa DROP CONSTRAINT FKendereço_e597786;
+ALTER TABLE chamado DROP CONSTRAINT FKchamado524409;
 ALTER TABLE chamado DROP CONSTRAINT FKchamado686775;
-ALTER TABLE tipo_chamado DROP CONSTRAINT FKtipo_chamado175715;
-ALTER TABLE telefone_empresa DROP CONSTRAINT FKtelefone_empresa997232;
-ALTER TABLE departamento DROP CONSTRAINT FKdepartamento265819;
-ALTER TABLE telefone_usuario DROP CONSTRAINT FKtelefone_usuario327246;
-ALTER TABLE historico_chamado DROP CONSTRAINT FKhistorico_chamado313975;
-ALTER TABLE historico_chamado DROP CONSTRAINT FKhistorico_chamado572937;
+ALTER TABLE tipo_chamado DROP CONSTRAINT FKtipo_chama175715;
+ALTER TABLE telefone_empresa DROP CONSTRAINT FKtelefone_e997232;
+ALTER TABLE departamento DROP CONSTRAINT FKdepartamen283320;
+ALTER TABLE telefone_usuario DROP CONSTRAINT FKtelefone_u221893;
+ALTER TABLE historico_chamado DROP CONSTRAINT FKhistorico_313975;
+ALTER TABLE historico_chamado DROP CONSTRAINT FKhistorico_572937;
 
--- Drop Tables
+-- Drop tables
 DROP TABLE IF EXISTS chamado CASCADE;
 DROP TABLE IF EXISTS departamento CASCADE;
 DROP TABLE IF EXISTS empresa CASCADE;
-DROP TABLE IF EXISTS endereco_empresa CASCADE;
+DROP TABLE IF EXISTS endereço_empresa CASCADE;
 DROP TABLE IF EXISTS historico_chamado CASCADE;
 DROP TABLE IF EXISTS telefone_empresa CASCADE;
 DROP TABLE IF EXISTS telefone_usuario CASCADE;

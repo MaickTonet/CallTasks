@@ -3,6 +3,7 @@ package br.com.calltasks.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -44,7 +45,13 @@ public class EmpresaController {
 	 */
 	@GetMapping(path = "/listar")
 	public List<Empresa> listar() {
-		return empresaRepository.findAll();
+		try {
+			return empresaRepository.findAll();
+		} catch (Exception e) {
+			e.printStackTrace();
+
+			throw new RuntimeException("Não foi possível listar as empresas");
+		}
 	}
 
 	/**
@@ -56,8 +63,14 @@ public class EmpresaController {
 	@PostMapping(path = "/criar")
 	@ResponseBody
 	public ResponseEntity<Empresa> criar(@RequestBody Empresa empresa) {
-		Empresa e = empresaRepository.save(empresa);
-		return new ResponseEntity<>(e, HttpStatus.CREATED);
+		try {
+			Empresa e = empresaRepository.save(empresa);
+			return new ResponseEntity<>(e, HttpStatus.CREATED);
+		} catch (Exception e) {
+			e.printStackTrace();
+
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+		}
 	}
 
 	/**
@@ -69,8 +82,16 @@ public class EmpresaController {
 	@DeleteMapping(path = "/delete")
 	@ResponseBody
 	public ResponseEntity<String> deletar(@RequestParam String cnpjEmpresa) {
-		empresaRepository.deleteById(cnpjEmpresa);
-		return new ResponseEntity<>("Empresa removida com sucesso", HttpStatus.OK);
+		try {
+			empresaRepository.deleteById(cnpjEmpresa);
+			return new ResponseEntity<>("Empresa removida com sucesso", HttpStatus.OK);
+		} catch (EmptyResultDataAccessException e) {
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Empresa não encontrada");
+		} catch (Exception e) {
+			e.printStackTrace();
+
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Não foi possível excluir a empresa");
+		}
 	}
 
 	/**
@@ -82,8 +103,19 @@ public class EmpresaController {
 	@GetMapping(path = "/buscar-id")
 	@ResponseBody
 	public ResponseEntity<Empresa> buscarId(@RequestParam String cnpjEmpresa) {
-		Empresa empresa = empresaRepository.findById(cnpjEmpresa).orElse(null);
-		return new ResponseEntity<>(empresa, HttpStatus.OK);
+		try {
+			Empresa empresa = empresaRepository.findById(cnpjEmpresa).orElse(null);
+
+			if (empresa != null) {
+				return new ResponseEntity<>(empresa, HttpStatus.OK);
+			} else {
+				return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+		}
 	}
 
 	/**
@@ -95,10 +127,17 @@ public class EmpresaController {
 	@PutMapping(path = "/atualizar")
 	@ResponseBody
 	public ResponseEntity<?> atualizar(@RequestBody Empresa empresa) {
-		if (empresa.getCnpjEmpresa() == null) {
-			return new ResponseEntity<>("CNPJ não informado para atualizar", HttpStatus.OK);
+		try {
+			if (empresa.getCnpjEmpresa() == null) {
+				return new ResponseEntity<>("CNPJ não informado para atualizar", HttpStatus.BAD_REQUEST);
+			}
+			Empresa e = empresaRepository.saveAndFlush(empresa);
+			return new ResponseEntity<>(e, HttpStatus.OK);
+		} catch (Exception e) {
+			e.printStackTrace();
+
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Não foi possível atualizar a empresa");
 		}
-		Empresa e = empresaRepository.saveAndFlush(empresa);
-		return new ResponseEntity<>(e, HttpStatus.OK);
 	}
+
 }

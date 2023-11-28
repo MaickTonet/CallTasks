@@ -3,6 +3,7 @@ package br.com.calltasks.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -44,7 +45,13 @@ public class UsuarioControllers {
 	 */
 	@GetMapping(path = "/listar")
 	public List<Usuario> listar() {
-		return usuarioRepository.findAll();
+		try {
+			return usuarioRepository.findAll();
+		} catch (Exception e) {
+			e.printStackTrace();
+
+			throw new RuntimeException("Não foi possível listar os usuários");
+		}
 	}
 
 	/**
@@ -56,8 +63,14 @@ public class UsuarioControllers {
 	@PostMapping(path = "/criar")
 	@ResponseBody
 	public ResponseEntity<Usuario> criar(@RequestBody Usuario usuario) {
-		Usuario user = usuarioRepository.save(usuario);
-		return new ResponseEntity<>(user, HttpStatus.CREATED);
+		try {
+			Usuario user = usuarioRepository.save(usuario);
+			return new ResponseEntity<>(user, HttpStatus.CREATED);
+		} catch (Exception e) {
+			e.printStackTrace();
+
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+		}
 	}
 
 	/**
@@ -69,8 +82,16 @@ public class UsuarioControllers {
 	@DeleteMapping(path = "/delete")
 	@ResponseBody
 	public ResponseEntity<String> deletar(@RequestParam Long idUsuario) {
-		usuarioRepository.deleteById(idUsuario);
-		return new ResponseEntity<>("Usuário excluído com sucesso", HttpStatus.OK);
+		try {
+			usuarioRepository.deleteById(idUsuario);
+			return new ResponseEntity<>("Usuário excluído com sucesso", HttpStatus.OK);
+		} catch (EmptyResultDataAccessException e) {
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Usuário não encontrado");
+		} catch (Exception e) {
+			e.printStackTrace();
+
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Não foi possível excluir o usuário");
+		}
 	}
 
 	/**
@@ -82,8 +103,21 @@ public class UsuarioControllers {
 	@GetMapping(path = "/buscar-id")
 	@ResponseBody
 	public ResponseEntity<Usuario> buscarID(@RequestParam Long idUsuario) {
-		Usuario usuario = usuarioRepository.findById(idUsuario).orElse(null);
-		return new ResponseEntity<>(usuario, HttpStatus.OK);
+		try {
+			Usuario usuario = usuarioRepository.findById(idUsuario).orElse(null);
+
+			if (usuario != null) {
+				return new ResponseEntity<>(usuario, HttpStatus.OK);
+			} else {
+				return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+			}
+		} catch (Exception e) {
+			// Aqui você pode logar a exceção se necessário
+			e.printStackTrace(); // Isso imprime a exceção no console, substitua por um log apropriado
+
+			// Retorne a mensagem desejada em caso de exceção
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+		}
 	}
 
 	/**
@@ -95,10 +129,19 @@ public class UsuarioControllers {
 	@PutMapping(path = "/atualizar")
 	@ResponseBody
 	public ResponseEntity<?> atualizar(@RequestBody Usuario usuario) {
-		if (usuario.getCpfUsuario() == null) {
-			return new ResponseEntity<>("ID não informado para atualizar", HttpStatus.OK);
+		try {
+			if (usuario.getCpfUsuario() == null) {
+				return new ResponseEntity<>("ID não informado para atualizar", HttpStatus.BAD_REQUEST);
+			}
+			Usuario user = usuarioRepository.saveAndFlush(usuario);
+			return new ResponseEntity<>(user, HttpStatus.OK);
+		} catch (Exception e) {
+			// Aqui você pode logar a exceção se necessário
+			e.printStackTrace(); // Isso imprime a exceção no console, substitua por um log apropriado
+
+			// Retorne a mensagem desejada em caso de exceção
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Não foi possível atualizar o usuário");
 		}
-		Usuario user = usuarioRepository.saveAndFlush(usuario);
-		return new ResponseEntity<>(user, HttpStatus.OK);
 	}
+
 }
